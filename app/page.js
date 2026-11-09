@@ -9,15 +9,16 @@ import {
   Alignment,
 } from '@rive-app/react-webgl2';
 
-// ---- Names exactly as they appear in Artboard_Stage3.riv and Artboard_Stage2.riv ----
+// ---- Names exactly as they appear in Artboard_Stage3.riv, Artboard_Stage2.riv and Artboard_Stage1.riv ----
 const SM = 'Adult Avatar Controller';
 const VM = 'HeroVM';
 
-// Two stages: same state machine, same inputs, same view model.
+// Three stages: same state machine, same inputs, same view model.
 // Only the file and the artboard name differ.
 const STAGES = [
   { id: 3, label: 'Stage 3', src: '/Artboard_Stage3.riv', artboard: 'Artboard_Stage3' },
   { id: 2, label: 'Stage 2', src: '/Artboard_Stage2.riv', artboard: 'Artboard_Stage2' },
+  { id: 1, label: 'Stage 1', src: '/Artboard_Stage1.riv', artboard: 'Artboard_Stage1' },
 ];
 
 const OUTFITS = [
@@ -425,8 +426,9 @@ function Demo({ stageId, onStage, tab, setTab }) {
           <div className="docs-body">
             <DocSection id="overview" eyebrow="Overview" title="Two independent control layers">
               <p>
-                The character in <code>Artboard_Stage3.riv</code> and{' '}
-                <code>Artboard_Stage2.riv</code> is fixed
+                The character in <code>Artboard_Stage3.riv</code>,{' '}
+                <code>Artboard_Stage2.riv</code> and{' '}
+                <code>Artboard_Stage1.riv</code> is fixed
                 inside a 3000 × 3201 artboard, so do not scale it per
                 stage. It is controlled in two separate ways that do not
                 affect each other.
@@ -602,13 +604,14 @@ function Demo({ stageId, onStage, tab, setTab }) {
               <div className="tree-block">{`public/
   Artboard_Stage3.riv   artboard "Artboard_Stage3" (3000 × 3201)
   Artboard_Stage2.riv   artboard "Artboard_Stage2" (3000 × 3201)
+  Artboard_Stage1.riv   artboard "Artboard_Stage1"
                         both: state machine "${SM}"
                               view model "${VM}", default instance "Purple"`}</div>
             </DocSection>
 
             <DocSection id="checklist" eyebrow="Integration Checklist" title="Ship it">
               <ul className="check-list boxes">
-                <li>Load <code>Artboard_Stage3.riv</code> or <code>Artboard_Stage2.riv</code> with its artboard name and state machine <code>{SM}</code></li>
+                <li>Load <code>Artboard_Stage3.riv</code>, <code>Artboard_Stage2.riv</code> or <code>Artboard_Stage1.riv</code> with its artboard name and state machine <code>{SM}</code></li>
                 <li>Keep the character unscaled inside the artboard</li>
                 <li>Bind a <code>{VM}</code> instance, then set charge, colors and belt letter</li>
                 <li>Set the customization inputs with whole numbers inside their ranges</li>
@@ -618,7 +621,7 @@ function Demo({ stageId, onStage, tab, setTab }) {
             </DocSection>
 
             <footer className="docs-footer">
-              Hero Stage 3 / Stage 2 · Rive integration docs
+              Hero Stage 3 / Stage 2 / Stage 1 · Rive integration docs
             </footer>
           </div>
         </div>
@@ -789,8 +792,8 @@ const JS_EXAMPLE = `import { Rive, Fit, Alignment, Layout } from '@rive-app/canv
 const SM = 'Adult Avatar Controller'
 
 const hero = new Rive({
-  src: '/Artboard_Stage3.riv',      // or '/Artboard_Stage2.riv'
-  artboard: 'Artboard_Stage3',      // or 'Artboard_Stage2'
+  src: '/Artboard_Stage3.riv',      // or '/Artboard_Stage2.riv', '/Artboard_Stage1.riv'
+  artboard: 'Artboard_Stage3',      // or 'Artboard_Stage2', 'Artboard_Stage1'
   canvas: document.getElementById('canvas'),
   stateMachines: SM,
   autoplay: true,
